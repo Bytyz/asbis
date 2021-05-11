@@ -1,32 +1,410 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asbis Test Markup</title>
-    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
-    <link rel="stylesheet" type="text/css" href="css/font.css"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/font.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" href="lib/swiper-bundle.min.css" />
+
 </head>
+
 <body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="cart" viewBox="0 0 64 56">
+            <path
+                d="M59.3152 8.62273C68.2118 13.9614 64.4393 61.3345 47.9796 55.5038C25.5652 47.5637 -1.26155 66.2621 0.0459933 30.5739C0.968871 5.38488 26.8262 -10.8734 59.3152 8.62273Z"
+                fill="currentColor" />
+            <g clip-path="url(#clip0)">
+                <path
+                    d="M44.1819 21.8594C43.8529 21.7183 43.4813 21.7138 43.1489 21.8467C42.8165 21.9796 42.5504 22.2391 42.4093 22.5681L38.7103 31.2H27.342L26.1 16.238C26.0718 15.8997 25.9173 15.5844 25.6671 15.355C25.4169 15.1256 25.0894 14.9988 24.75 15H19.35C18.992 15 18.6486 15.1422 18.3954 15.3954C18.1422 15.6486 18 15.992 18 16.35C18 16.7081 18.1422 17.0514 18.3954 17.3046C18.6486 17.5578 18.992 17.7 19.35 17.7H23.508L24.75 32.6621C24.7782 33.0003 24.9327 33.3156 25.1829 33.545C25.4331 33.7744 25.7606 33.9012 26.1 33.9H39.6C39.8642 33.9 40.1225 33.8225 40.343 33.677C40.5636 33.5316 40.7366 33.3247 40.8406 33.0819L44.8906 23.6319C45.0317 23.3029 45.0362 22.9313 44.9033 22.5989C44.7704 22.2665 44.5109 22.0005 44.1819 21.8594Z"
+                    fill="white" />
+                <path
+                    d="M26.775 40.6496C27.8934 40.6496 28.8 39.743 28.8 38.6246C28.8 37.5062 27.8934 36.5996 26.775 36.5996C25.6566 36.5996 24.75 37.5062 24.75 38.6246C24.75 39.743 25.6566 40.6496 26.775 40.6496Z"
+                    fill="white" />
+                <path
+                    d="M38.9249 40.6496C40.0433 40.6496 40.9499 39.743 40.9499 38.6246C40.9499 37.5062 40.0433 36.5996 38.9249 36.5996C37.8065 36.5996 36.8999 37.5062 36.8999 38.6246C36.8999 39.743 37.8065 40.6496 38.9249 40.6496Z"
+                    fill="white" />
+            </g>
+            <defs>
+                <clipPath id="clip0">
+                    <rect width="27" height="27" fill="white" transform="translate(18 15)" />
+                </clipPath>
+            </defs>
+        </symbol>
+        <symbol id="arrow-left" viewBox="0 0 21 11">
+            <path
+                d="M6.02205 10.7706C5.71805 11.0765 5.22517 11.0765 4.92118 10.7706L0.311005 6.1319C0.282082 6.11 0.25433 6.0858 0.227995 6.0593C0.0746178 5.90497 -0.00137474 5.70227 1.7647e-05 5.5C-0.0013747 5.29773 0.0746179 5.09502 0.227995 4.9407C0.25433 4.9142 0.28208 4.89 0.311003 4.86809L4.92118 0.229408C5.22517 -0.0764698 5.71805 -0.0764689 6.02205 0.229409C6.32605 0.535288 6.32604 1.03122 6.02205 1.3371L2.63023 4.74988L20.2216 4.74988C20.6515 4.74988 21 5.10056 21 5.53314C21 5.96571 20.6515 6.31639 20.2216 6.31639L2.6961 6.31639L6.02205 9.6629C6.32604 9.96878 6.32604 10.4647 6.02205 10.7706Z"
+                fill="currentColor" />
+        </symbol>
+        <symbol id="arrow-right" viewBox="0 0 21 11">
+            <path
+                d="M14.978 10.7706C15.2819 11.0765 15.7748 11.0765 16.0788 10.7706L20.689 6.1319C20.7179 6.11 20.7457 6.0858 20.772 6.0593C20.9254 5.90497 21.0014 5.70227 21 5.5C21.0014 5.29773 20.9254 5.09502 20.772 4.9407C20.7457 4.9142 20.7179 4.89 20.689 4.86809L16.0788 0.229408C15.7748 -0.0764698 15.2819 -0.0764689 14.978 0.229409C14.674 0.535288 14.674 1.03122 14.978 1.3371L18.3698 4.74988L0.778434 4.74988C0.348517 4.74988 -5.15746e-07 5.10056 -4.77928e-07 5.53314C-4.40111e-07 5.96571 0.348516 6.31639 0.778433 6.31639L18.3039 6.31639L14.978 9.6629C14.674 9.96878 14.674 10.4647 14.978 10.7706Z"
+                fill="#FE9071" />
+        </symbol>
+    </svg>
     <section class="main">
         <div class="container">
             <div class="adapter">
                 <h1 class="adapter__title">Многопортовый адаптер</h1>
-                <div class="adapter__box"></div>
+                <div class="adapter__box">
+                    <div class="adapter__text">
+                        <div class="adapter__name">Многопортовый адаптер Satechi Aluminum Type-C </div>
+                        <div class="adapter__price">XXX <span>BYN</span></div>
+                        <a href="##" class="adapter__buy">Купить</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     <section class="slider">
         <div class="container">
-            <img src="image/icon-cart.svg" alt="Купить">
+            <div class="slider__filter">
+                <span class="slider__sort current" data-sort="all">Все</span>
+                <span class="slider__sort" data-sort="she">Для нее</span>
+                <span class="slider__sort" data-sort="he">Для него</span>
+            </div>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" data-filter="she">
+                        <div class="item">
+                            <div class="item__inner">
+                                <a href="##" class="item__image">
+                                    <img src="image/item1.png" alt="" class="item__img">
+                                </a>
+                                <a href="##" class="item__name">Кожаный ремешок NATIVE UNION для корпуса 42/44 мм, застежка
+                                    цвета Серебристый</a>
+                                <div class="item__info">
+                                    <div class="item__price">
+                                        <div class="item__profit">Выгода 100 грн</div>
+                                        <div class="item__value">200 <span>грн</span></div>
+                                    </div>
+                                    <a href="##" class="item__btn">
+                                        <svg viewBox="0 0 64 56" class="icon icon-cart">
+                                            <use xlink:href="#cart"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" data-filter="she">
+                        <div class="item">
+                            <div class="item__inner">
+                                <a href="##" class="item__image">
+                                    <img src="image/item2.png" alt="" class="item__img">
+                                </a>
+                                <a href="##" class="item__name">Беспроводное зарядное устройство PRESTIGIO ReVolt A1 2*USB Тип
+                                    A</a>
+                                <div class="item__info">
+                                    <div class="item__price">
+                                        <div class="item__profit">Выгода 100 грн</div>
+                                        <div class="item__value">200 <span>грн</span></div>
+                                    </div>
+                                    <a href="##" class="item__btn">
+                                        <svg viewBox="0 0 64 56" class="icon icon-cart">
+                                            <use xlink:href="#cart"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" data-filter="she">
+                        <div class="item">
+                            <div class="item__inner">
+                                <a href="##" class="item__image">
+                                    <img src="image/item3.png" alt="" class="item__img">
+                                </a>
+                                <a href="##" class="item__name">Беспроводное зарядное устройство SATECHI, 5 Вт, Серый</a>
+                                <div class="item__info">
+                                    <div class="item__price">
+                                        <div class="item__profit">Выгода 100 грн</div>
+                                        <div class="item__value">200 <span>грн</span></div>
+                                    </div>
+                                    <a href="##" class="item__btn">
+                                        <svg viewBox="0 0 64 56" class="icon icon-cart">
+                                            <use xlink:href="#cart"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" data-filter="he">
+                        <div class="item">
+                            <div class="item__inner">
+                                <a href="##" class="item__image">
+                                    <img src="image/item4.png" alt="" class="item__img">
+                                </a>
+                                <a href="##" class="item__name">Кожаный ремешок NATIVE UNION для корпуса 42/44 мм, застежка
+                                    цвета Серебристый</a>
+                                <div class="item__info">
+                                    <div class="item__price">
+                                        <div class="item__profit">Выгода 100 грн</div>
+                                        <div class="item__value">200 <span>грн</span></div>
+                                    </div>
+                                    <a href="##" class="item__btn">
+                                        <svg viewBox="0 0 64 56" class="icon icon-cart">
+                                            <use xlink:href="#cart"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" data-filter="he"><div class="item">
+                        <div class="item__inner">
+                            <a href="##" class="item__image">
+                                <img src="image/item5.png" alt="" class="item__img">
+                            </a>
+                            <a href="##" class="item__name">Беспроводное зарядное устройство PRESTIGIO ReVolt A1 2*USB Тип
+                                A</a>
+                            <div class="item__info">
+                                <div class="item__price">
+                                    <div class="item__profit">Выгода 100 грн</div>
+                                    <div class="item__value">200 <span>грн</span></div>
+                                </div>
+                                <a href="##" class="item__btn">
+                                    <svg viewBox="0 0 64 56" class="icon icon-cart">
+                                        <use xlink:href="#cart"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div></div>
+                    <div class="swiper-slide" data-filter="he">
+                        <div class="item">
+                            <div class="item__inner">
+                                <a href="##" class="item__image">
+                                    <img src="image/item6.png" alt="" class="item__img">
+                                </a>
+                                <a href="##" class="item__name">Беспроводное зарядное устройство SATECHI, 5 Вт, Серый</a>
+                                <div class="item__info">
+                                    <div class="item__price">
+                                        <div class="item__profit">Выгода 100 грн</div>
+                                        <div class="item__value">200 <span>грн</span></div>
+                                    </div>
+                                    <a href="##" class="item__btn">
+                                        <svg viewBox="0 0 64 56" class="icon icon-cart">
+                                            <use xlink:href="#cart"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" data-filter="she">
+                        <div class="item">
+                            <div class="item__inner">
+                                <a href="##" class="item__image">
+                                    <img src="image/item7.png" alt="" class="item__img">
+                                </a>
+                                <a href="##" class="item__name">Кожаный ремешок NATIVE UNION для корпуса 42/44 мм, застежка
+                                    цвета Серебристый</a>
+                                <div class="item__info">
+                                    <div class="item__price">
+                                        <div class="item__profit">Выгода 100 грн</div>
+                                        <div class="item__value">200 <span>грн</span></div>
+                                    </div>
+                                    <a href="##" class="item__btn">
+                                        <svg viewBox="0 0 64 56" class="icon icon-cart">
+                                            <use xlink:href="#cart"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="swiper-button swiper-button-prev">
+                <svg viewBox="0 0 21 11" class="arrow arrow-left">
+                    <use xlink:href="#arrow-left"></use>
+                </svg>
+            </div>
+            <div class="swiper-button swiper-button-next">
+                <svg viewBox="0 0 21 11" class="arrow arrow-right">
+                    <use xlink:href="#arrow-right"></use>
+                </svg>
+            </div>
         </div>
     </section>
     <section class="catalog">
         <div class="container">
+            <h2 class="catalog__title">Каталог товаров</h2>
+            <div class="items">
+                <div class="item">
+                    <div class="item__inner">
+                        <a href="##" class="item__image">
+                            <img src="image/item1.png" alt="" class="item__img">
+                        </a>
+                        <a href="##" class="item__name">Кожаный ремешок NATIVE UNION для корпуса 42/44 мм, застежка
+                            цвета Серебристый</a>
+                        <div class="item__info">
+                            <div class="item__price">
+                                <div class="item__profit">Выгода 100 грн</div>
+                                <div class="item__value">200 <span>грн</span></div>
+                            </div>
+                            <a href="##" class="item__btn">
+                                <svg viewBox="0 0 64 56" class="icon icon-cart">
+                                    <use xlink:href="#cart"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item__inner">
+                        <a href="##" class="item__image">
+                            <img src="image/item2.png" alt="" class="item__img">
+                        </a>
+                        <a href="##" class="item__name">Беспроводное зарядное устройство PRESTIGIO ReVolt A1 2*USB Тип
+                            A</a>
+                        <div class="item__info">
+                            <div class="item__price">
+                                <div class="item__profit">Выгода 100 грн</div>
+                                <div class="item__value">200 <span>грн</span></div>
+                            </div>
+                            <a href="##" class="item__btn">
+                                <svg viewBox="0 0 64 56" class="icon icon-cart">
+                                    <use xlink:href="#cart"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item__inner">
+                        <a href="##" class="item__image">
+                            <img src="image/item3.png" alt="" class="item__img">
+                        </a>
+                        <a href="##" class="item__name">Беспроводное зарядное устройство SATECHI, 5 Вт, Серый</a>
+                        <div class="item__info">
+                            <div class="item__price">
+                                <div class="item__profit">Выгода 100 грн</div>
+                                <div class="item__value">200 <span>грн</span></div>
+                            </div>
+                            <a href="##" class="item__btn">
+                                <svg viewBox="0 0 64 56" class="icon icon-cart">
+                                    <use xlink:href="#cart"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item__inner">
+                        <a href="##" class="item__image">
+                            <img src="image/item4.png" alt="" class="item__img">
+                        </a>
+                        <a href="##" class="item__name">Кожаный ремешок NATIVE UNION для корпуса 42/44 мм, застежка
+                            цвета Серебристый</a>
+                        <div class="item__info">
+                            <div class="item__price">
+                                <div class="item__profit">Выгода 100 грн</div>
+                                <div class="item__value">200 <span>грн</span></div>
+                            </div>
+                            <a href="##" class="item__btn">
+                                <svg viewBox="0 0 64 56" class="icon icon-cart">
+                                    <use xlink:href="#cart"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item__inner">
+                        <a href="##" class="item__image">
+                            <img src="image/item5.png" alt="" class="item__img">
+                        </a>
+                        <a href="##" class="item__name">Беспроводное зарядное устройство PRESTIGIO ReVolt A1 2*USB Тип
+                            A</a>
+                        <div class="item__info">
+                            <div class="item__price">
+                                <div class="item__profit">Выгода 100 грн</div>
+                                <div class="item__value">200 <span>грн</span></div>
+                            </div>
+                            <a href="##" class="item__btn">
+                                <svg viewBox="0 0 64 56" class="icon icon-cart">
+                                    <use xlink:href="#cart"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item__inner">
+                        <a href="##" class="item__image">
+                            <img src="image/item6.png" alt="" class="item__img">
+                        </a>
+                        <a href="##" class="item__name">Беспроводное зарядное устройство SATECHI, 5 Вт, Серый</a>
+                        <div class="item__info">
+                            <div class="item__price">
+                                <div class="item__profit">Выгода 100 грн</div>
+                                <div class="item__value">200 <span>грн</span></div>
+                            </div>
+                            <a href="##" class="item__btn">
+                                <svg viewBox="0 0 64 56" class="icon icon-cart">
+                                    <use xlink:href="#cart"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item__inner">
+                        <a href="##" class="item__image">
+                            <img src="image/item7.png" alt="" class="item__img">
+                        </a>
+                        <a href="##" class="item__name">Кожаный ремешок NATIVE UNION для корпуса 42/44 мм, застежка
+                            цвета Серебристый</a>
+                        <div class="item__info">
+                            <div class="item__price">
+                                <div class="item__profit">Выгода 100 грн</div>
+                                <div class="item__value">200 <span>грн</span></div>
+                            </div>
+                            <a href="##" class="item__btn">
+                                <svg viewBox="0 0 64 56" class="icon icon-cart">
+                                    <use xlink:href="#cart"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item__inner">
+                        <a href="##" class="item__image">
+                            <img src="image/item8.png" alt="" class="item__img">
+                        </a>
+                        <a href="##" class="item__name">Беспроводное зарядное устройство PRESTIGIO ReVolt A1 2*USB Тип
+                            A</a>
+                        <div class="item__info">
+                            <div class="item__price">
+                                <div class="item__profit">Выгода 100 грн</div>
+                                <div class="item__value">200 <span>грн</span></div>
+                            </div>
+                            <a href="##" class="item__btn">
+                                <svg viewBox="0 0 64 56" class="icon icon-cart">
+                                    <use xlink:href="#cart"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </section>
+
+    <script src="lib/swiper-bundle.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
+
 </html>
