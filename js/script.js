@@ -20,10 +20,13 @@ function sliderInit() {
             1024: {
                 slidesPerView: 3,
                 slidesPerGroup: 3,
-                spaceBetween: 40
+                spaceBetween: 30
             }
         }
 
+    });
+    swiper.on('slideChange', function () {
+        onlyTwoSlides();
     });
 }
 
@@ -67,24 +70,33 @@ sort.forEach((el) => {
 
 
 function onlyTwoSlides() {
-    document.querySelector('.swiper-slide-active').dataset.filter
-    if ((document.querySelector('.swiper-slide-active').dataset.filter=="she" && document.querySelector('.swiper-slide-next').dataset.filter=="he") || (document.querySelector('.swiper-slide-active').dataset.filter=="he" && document.querySelector('.swiper-slide-next').dataset.filter=="she")) {
-        
-        let buttons = document.getElementsByClassName('slider__sort');
-        for (i=0; i<buttons.length; i++) {
-            buttons[i].classList.remove('current');
+    if (window.innerWidth < 1024 && window.innerWidth > 640) {
+        let activeSlide = document.getElementsByClassName('swiper-slide-active')[0];
+        let nextSlide = document.querySelector('.swiper-slide-active + .swiper-slide-next');
+
+        if (!nextSlide) { return false; }
+
+        if ((activeSlide.dataset.filter == "she" && nextSlide.dataset.filter == "he") || (activeSlide.dataset.filter == "he" && nextSlide.dataset.filter == "she")) {
+
+            let buttons = document.getElementsByClassName('slider__sort');
+            for (i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('current');
+            }
+            buttons[0].classList.add('current');
         }
-        buttons[0].classList.add('current');
+        else if (sort[1].classList.contains('current') || sort[2].classList.contains('current')) {
+            return false;
+        }
+        else {
+            let buttons = document.getElementsByClassName('slider__sort');
+            buttons[0].classList.remove('current');
+            buttons[1].classList.add('current');
+            buttons[2].classList.add('current');
+
+        }
+
     }
-    else {
-        let buttons = document.getElementsByClassName('slider__sort');
-        buttons[0].classList.remove('current');
-        buttons[1].classList.add('current');
-        buttons[2].classList.add('current');
-    }
-    
+
 }
-swiper.on('slideChange', function () {
-    onlyTwoSlides();
-  });
+
 
