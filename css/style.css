@@ -48,7 +48,7 @@ body {
     position           : absolute;
     width              : 519px;
     height             : 558px;
-    background-image   : url(/image/adapter.png);
+    background-image   : url(../image/adapter.png);
     background-size    : contain;
     background-repeat  : no-repeat;
     background-position: top;
